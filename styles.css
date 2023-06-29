@@ -1,0 +1,141 @@
+body{
+    background-color: palevioletred;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.box1 {
+    background-color: blueviolet;
+    padding: 2em;
+    border: 3px solid #3a0ca3;
+    margin: 1em;
+    border-radius: 1em;
+}
+
+.box2 {
+    background-color: #3a0ca3;
+    padding: 2em;
+    border: 3px solid #4361ee;
+    margin: 1em;
+    border-radius: 1em;
+}
+
+.box3 {
+    background-color: #4361ee;
+    padding: 2em;
+    border: 3px solid blueviolet;
+    margin: 1em;
+    border-radius: 1em;
+    flex: 40%;
+
+}
+
+.footer {
+    background-color: #4cc9f0;
+    padding: 2em;
+    margin: 1em;
+    border-radius: 0.5em;
+}
+
+@media (min-width : 960px) {
+    .sizes{
+        display: flex;
+    }
+    
+}
+
+h1 {
+    text-align: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: xx-large;
+}
+
+img {
+    width: 10em;
+}
+
+.sizeHeading {
+    float: left;
+    padding: 0.5em;
+    margin: 0.5em;
+
+}
+
+.footer {
+    display: flex;
+}
+
+.contacts {
+    float: left;
+    padding: 1em;
+    margin: 1em;
+    flex: 50%;
+}
+
+.address {
+    float: right;
+    padding: 1em;
+    margin: 1em;
+}
+
+.cart {
+    background-image: url(images/piz.jpg);
+    text-align: center;
+    background-size: cover;
+    background-position: 50% 50%;
+
+}
+
+.addPizzaBtn {
+    font-weight: bolder;
+    font-size: x-large;
+    border: solid;
+    border-radius: 1em;
+    width: 1.5em;
+    border: groove white;
+    color: white;
+    background-color:green;
+    font-weight: bold;
+}
+
+.subPizzaBtn {
+    font-weight: bolder;
+    font-size: x-large;
+    border: solid;
+    border-radius: 1em;
+    width: 1.5em;
+    color: white;
+    background-color:red;
+    font-weight: bold;
+}
+
+span {
+    padding: 1em;
+    margin: 1em;
+}
+
+.orderBtn {
+    border: groove white;
+    height: 40px;
+    width: 170px;
+    color: white;
+    background-color:green;
+    font-weight: bold;
+}
+
+.checkOutBtn {
+    border: groove white;
+    height: 40px;
+    width: 170px;
+    color: white;
+    background-color:#0066ff;
+    font-weight: bold;
+}
+
+.orderPizza {
+    padding-top: 1em;
+    text-align: center;
+}
+
+.totalCost {
+    padding-left: 4.2em;
+}

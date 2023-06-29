@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="code.js"></script>
+</body>
+</head>
+<body>
+    <Section class="header">
+        <h1>Perfect Pizza</h1>
+    </Section>
+    
+    <section class="main">
+        <div x-data="{ modal: false, totalCost: 0, smallTotal: 0, 
+            mediumTotal: 0, largeTotal: 0,  pizzaTitleS: 'Small', 
+            pizzaTitleM: 'Medium', pizzaTitleL: 'Large', Message: '',
+            totalCostTitle: 'Total Cost', successMessage: 'Enjoy your pizza/s',
+            failMessage: 'Sorry- that is not enough money', 
+            payAmount: 0 }">
+            <section class="cart" style="padding-bottom: 1em;">
+                <h2 style="text-align: center; border: solid; background-color: whitesmoke;
+                padding: 0.5em;">Shopping Cart</h2>
+                <div>
+                    <span x-text="pizzaTitleS" style="padding-right: 1.9em;"></span>
+                    <button class="addPizzaBtn"  @click=" 
+                        smallTotal += 28;">+</button>
+                    <button class="subPizzaBtn" @click="if(smallTotal > 0){
+                        smallTotal -= 28;
+                    }">-</button>
+                    <span class="smallTotal" x-text="smallTotal"></span>
+                </div>
+                <div>
+                    <span x-text="pizzaTitleM"></span>
+                    <button class="addPizzaBtn" @click=" 
+                    mediumTotal += 78;">+</button>
+                    <button class="subPizzaBtn" @click="if(mediumTotal > 0){
+                        mediumTotal -= 78;
+                    }">-</button>
+                    <span class="mediumTotal" x-text="mediumTotal"></span>
+                </div>
+                <div>
+                    <span x-text="pizzaTitleL" style="padding-right: 2em;"></span>
+                    <button class="addPizzaBtn" @click=" 
+                    largeTotal += 148;
+                    ">+</button>
+                    <button class="subPizzaBtn" @click="if(largeTotal > 0){
+                        largeTotal -= 148;
+                    }">-</button>
+                    <span class="largeTotal" x-text="largeTotal"></span>
+                </div>
+                <div>
+                    <span x-text="totalCostTitle" style="padding-right: 1.9em;"></span>
+                    <span class="totalCost" x-text=" totalCost = smallTotal + mediumTotal + largeTotal"></span>
+                </div>
+                <template x-if=" totalCost > 0">
+                    <div class="orderPizza" x-show="true" style="padding-bottom: 1em;">
+                        <button class="checkOutBtn" @click="modal=true">Checkout</button>
+                    </div>
+                </template>
+                <div x-show="modal" @click.outside="modal = false">
+                    <div  x-text="Message" style="background-color: white;
+                    font-size:larger; margin-bottom: 1em;"></div>
+                    <span style="padding-top: 1em;">Payment Amount:</span>
+                    <input class="payAmountTxt" type="text" x-model="payAmount"
+                    style="font-size: small;">
+                    <div class="orderPizza" style="padding-bottom: 1em;">
+                        <button class="orderBtn" @click="if(payAmount == totalCost){ 
+                            Message=successMessage; }
+                            else{ Message=failMessage; }">Pay</button>
+                    </div>        
+                </div>
+                <div x-init="$watch('Message', setInterval(function(){
+                    if(Message == successMessage || Message == failMessage){
+                        modal = false,
+                        totalCost = 0, smallTotal= 0, 
+                        mediumTotal= 0, largeTotal= 0,
+                        Message= '', payAmount= 0 
+                    }
+                    }, 7000))">
+                </div>
+            </section>
+            <div class="sizes">
+                <div class="box1">
+                    <div class="sizeHeading">
+                        <h2>Medium Pizza</h2>
+                        <h3>R78</h3>
+                    </div>    
+                    <div class="photo">
+                        <img src="images/P.png">
+                    </div> 
+                    <div class="description">
+                        medium margeritha pizza with 3 toppings max.
+                        2 or less meat topping. 3 or less other
+                        toppings
+                    </div>
+                    <div class="orderPizza">
+                        <button class="orderBtn" @click="if(mediumTotal == 0){ 
+                            mediumTotal += 78;}">Buy</button>
+                    </div>
+                </div>
+                <div class="box2">
+                    <div class="sizeHeading">
+                        <h2>Large Pizza</h2>
+                        <h3>R148</h3>
+                    </div>
+                    
+                    <div class="photo">
+                        <img src="images/p2.jpg">
+                    </div>  
+                    <div class="description">
+                        large margeritha pizza with 3 toppings max.
+                        3 meat toppings max. 3 or less other
+                        toppings.
+                    </div>
+                    <div class="orderPizza">
+                        <button class="orderBtn" @click="if(largeTotal == 0){ 
+                            largeTotal += 148;}">Buy</button>    
+                    </div>   
+                </div>
+                <div class="box3">   
+                    <div class="sizeHeading">
+                        <h2>Small Pizza</h2>
+                        <h3>R28</h3>
+                    </div>
+                    
+                    <div class="photo">
+                        <img src="images/Pizza-icon.png">
+                    </div>
+                    
+                    <div class="description">
+                        small pizza with 3 toppings.
+                        1 meat topping.
+                        3 or less other toppings.
+                    </div>
+                    <div class="orderPizza">
+                        <button class="orderBtn" @click="if(smallTotal == 0){ 
+                            smallTotal += 28;}">Buy</button>  
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="footer">
+        <div class="contacts">
+            <p>contact us at: (021)-541-1000</p>
+            <p>twitter</p>
+            <p>/fb</p>
+            <p>/insta</p>
+            <p>@perfectpizza</p>
+        </div>
+        <div class="address">
+            <p>Pizza Plaza</p>
+            <p>Dough Road</p>
+            <p>Base Town</p>
+        </div>
+        </div>    
+    </section>   
+</body>
+</html>
