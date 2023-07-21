@@ -1,6 +1,7 @@
 body{
-    background-color: palevioletred;
+    background-color: black;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: 0em;
 }
 
 .box1 {
@@ -40,17 +41,20 @@ body{
     .sizes{
         display: flex;
     }
-    
 }
 
 h1 {
-    text-align: center;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: xx-large;
+    font-weight: bolder;
+    padding: 1em;
+    padding-bottom: 0em;
+    color: white;
 }
 
 img {
     width: 10em;
+    float: right;
 }
 
 .sizeHeading {
@@ -119,16 +123,15 @@ span {
     width: 170px;
     color: white;
     background-color:green;
-    font-weight: bold;
 }
 
 .checkOutBtn {
     border: groove white;
-    height: 40px;
-    width: 170px;
+    height: 30px;
+    width: 100px;
     color: white;
     background-color:#0066ff;
-    font-weight: bold;
+    margin: 0.5em;
 }
 
 .orderPizza {
@@ -139,3 +142,85 @@ span {
 .totalCost {
     padding-left: 4.2em;
 }
+
+table {
+    border: solid white;
+    border-collapse: collapse;
+}
+
+td, th, tr {
+    border: solid white;
+    border-collapse: collapse;
+}
+
+.Cart {
+    margin: 1em;
+    border: solid #0066ff;
+}
+
+.APICart {
+    padding: 2em;
+    margin: 2em;
+    background-image: url('./images/cover.jpg');
+}
+
+table {
+    background-color: #4361ee;
+}
+
+hr {
+    margin: 5em;
+}
+
+.pizzaCart {
+    margin-top: 5em;
+}
+
+tr:nth-child(even) {
+    background-color: blueviolet;
+}
+
+[x-cloak] { display: none !important; }
+
+.login {
+    border: solid #0066ff;
+    padding-left: 2em;
+    padding-bottom: 2em;
+    margin-left: 1em;
+    background-color: white;
+}
+
+.header {
+    background-image: url('./images/NEON.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    padding-bottom: 3em;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+li {
+    float: right;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.receipt {
+    text-align: center;
+}
+
