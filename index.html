@@ -90,8 +90,8 @@
                     <div>
                         Username: <input type="text" placeholder="Enter Username" 
                         x-model="userName"> 
-                        <button @click="login()" x-show="userName.length > 2">Login</button>
-                        <button @click="logout()" x-show="userName && cartId">Logout</button>
+                        <button @click="login()" x-show="userName.length > 2 && cartId == 'NO CART CODE TO SHOW'">Login</button>
+                        <button @click="logout()" x-show="userName && cartId != 'NO CART CODE TO SHOW'">Logout</button>
                     </div>
                     <div>
                         Cart Code: <span x-text="cartId"></span>
