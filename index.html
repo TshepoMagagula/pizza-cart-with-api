@@ -36,13 +36,13 @@
                     <div x-init="getPastOrders(cart.cart_code)"></div>
                 </template>
                 <div>
-                    <div x-show="pastOrderedPizzas.length === 0" x-cloak>
+                    <div x-show="pastOrderedPizzas.length === 0">
                         <h1><span>You have no previous orders</span></h1>
                     </div>
                     <template x-for="pizzaOrder in pastOrderedPizzas">
                         <div>
-                            <div style="margin-left: 30em; margin-top: 2em;">
-                                <table class="receipt">
+                            <div style="margin-top: 2em;">
+                                <table class="receipt center">
                                     <thead>
                                         <tr>
                                             <th colspan="5">
@@ -90,14 +90,16 @@
                     <div>
                         Username: <input type="text" placeholder="Enter Username" 
                         x-model="userName"> 
-                        <button @click="login()" x-show="userName.length > 2 && cartId == 'NO CART CODE TO SHOW'">Login</button>
-                        <button @click="logout()" x-show="userName && cartId != 'NO CART CODE TO SHOW'">Logout</button>
+                        <button @click="login()" x-show="userName.length > 2 && cartId == 'NO CART CODE TO DISPLAY'">Login</button>
+                        <button @click="logout()" x-show="userName && cartId != 'NO CART CODE TO DISPLAY'">Logout</button>
                     </div>
                     <div>
-                        Cart Code: <span x-text="cartId"></span>
+                        Cart Code: <span x-text="cartId" style="margin: 0em;
+                        padding: 0em;"></span>
                     </div>
                 </div>
-                <div class="Cart col-lg-7 col-sm-12" style="background-color: white;">
+                <div class="Cart col-lg-7 col-sm-12" style="background-color: white;"
+                x-show="cartId != 'NO CART CODE TO DISPLAY'">
                     <h2 x-text="cartTitle" style="padding-left: 0.5em; 
                     padding-top: 0.5em;"></h2>
                 <div x-text="message" style="color: red; padding-left: 0.5em;
@@ -144,24 +146,25 @@
         <div class="sizes">
             <template x-for="pizza in featuredPizzas">
                 <div class="box3">
-                    <div class="flavour">
-                        <div x-text="pizza.flavour"></div>
+                    <div class="sizeHeading">
+                        <div class="flavour">
+                            <div x-text="pizza.flavour"></div>
+                        </div>
+                        <div class="pizzaSize" x-text="pizza.size"></div>
+                        <div class="pizzaPrice" x-text="'R ' + pizza.price"></div>
                     </div>
-                    <div class="pizzaSize&Price">
-                        <div x-text="pizza.size"></div>
-                        <div x-text="pizza.price"></div>
-                    </div> 
+                   
                     <div class="photo">
                         <img src="images/P.png">
                     </div>
-                    <div class="orderPizza col">
+                    <div class="orderPizza">
                         <button class="orderBtn" @click="addPizzaToCart(pizza.id)">Add To Cart</button>
                     </div> 
                 </div>
             </template>
         </div>
-        <div class="allPizzas">
-            <table class="table" >
+        <div class="allPizzas table-responsive">
+            <table class="center table"  style="width: 95%;">
                 <template x-for="pizza in pizzas">   
                     <tr>
                         <td style="font-size: 70px;">

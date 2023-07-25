@@ -5,7 +5,7 @@ document.addEventListener("alpine:init", () => {
             cartTitle: 'Your Cart',
             pizzas: [],
             userName: '',
-            cartId: 'NO CART CODE TO SHOW',
+            cartId: 'NO CART CODE TO DISPLAY',
             cartPizzas: [],
             cartTotal: 0.00,
             message: '',
@@ -144,35 +144,37 @@ document.addEventListener("alpine:init", () => {
             payForCart () {
                 this.pay(this.paymentAmount)
                 .then((result) => {
-                    if(result.data.status == 'failure') {
-                        this.message = result.data.message;
-                        setTimeout(() => this.message = '', 4000);
-                    } 
-                    else if(result.data.status == 'success' && this.paymentAmount > this.cartTotal) {
-                        this.message = `Payment received. Your change is R${(this.paymentAmount - this.cartTotal).toFixed(2)}`;
-
-                        setTimeout(() => {
-                            this.message='';
-                            this.cartPizzas=[];
-                            this.cartTotal=0.00;
-                            this.cartId='';
-                            this.paymentAmount=0;
-                            localStorage['cartId']='';
-                            this.createCart()
-                        }, 4000)
-                    } 
-                    else {
-                        this.message = 'Payment received';
-
-                        setTimeout(() => {
-                            this.message='';
-                            this.cartPizzas=[];
-                            this.cartTotal=0.00;
-                            this.cartId='';
-                            this.paymentAmount=0;
-                            localStorage['cartId']='';
-                            this.createCart()
-                        }, 4000)
+                    if(this.cartTotal != 0){
+                        if(result.data.status == 'success' && this.paymentAmount == this.cartTotal) {
+                            this.message = 'Payment received';
+    
+                            setTimeout(() => {
+                                this.message='';
+                                this.cartPizzas=[];
+                                this.cartTotal=0.00;
+                                this.cartId='';
+                                this.paymentAmount=0;
+                                localStorage['cartId']='';
+                                this.createCart()
+                            }, 4000)    
+                        } 
+                        else if(result.data.status == 'success' && this.paymentAmount > this.cartTotal) {
+                            this.message = `Payment received. Your change is R${(this.paymentAmount - this.cartTotal).toFixed(2)}`;
+    
+                            setTimeout(() => {
+                                this.message='';
+                                this.cartPizzas=[];
+                                this.cartTotal=0.00;
+                                this.cartId='';
+                                this.paymentAmount=0;
+                                localStorage['cartId']='';
+                                this.createCart()
+                            }, 4000)
+                        } 
+                        else {
+                            this.message = result.data.message;
+                            setTimeout(() => this.message = '', 4000);
+                        }
                     }
                 })
             },
@@ -193,6 +195,9 @@ document.addEventListener("alpine:init", () => {
           
                     this.historyCartsIds = result.data.filter(cart => cart.status === 'paid');
                     this.activateDisplayHistory();
+                    setTimeout(() => {
+                        this.deActivateDisplayHistory();
+                    }, 10000);
                   })
               },
 
@@ -212,10 +217,15 @@ document.addEventListener("alpine:init", () => {
                   })
             },
 
-              activateDisplayHistory() {
+            activateDisplayHistory() {
                 this.displayHistory = true;
                 this.cartDisplayed=true;//hide cart button
-              },
+            },
+
+            deActivateDisplayHistory() {
+                this.displayHistory = false;
+                this.cartDisplayed=false;
+            },
         }
     })
 })

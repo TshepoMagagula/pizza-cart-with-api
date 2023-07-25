@@ -61,6 +61,7 @@ img {
     float: left;
     padding: 0.5em;
     margin: 0.5em;
+    font-size: x-large;
 
 }
 
@@ -188,6 +189,7 @@ tr:nth-child(even) {
     padding-bottom: 2em;
     margin-left: 1em;
     background-color: white;
+    text-align: center;
 }
 
 .header {
@@ -222,5 +224,19 @@ li a:hover {
 
 .receipt {
     text-align: center;
+    background-color: #4361ee;
+    padding: 2em;
+    border: 3px solid blueviolet;
+    margin: 1em;
+    border-radius: 1em;
+    flex: 40%;
 }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
 
