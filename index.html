@@ -28,7 +28,8 @@
     </Section>
 
     <section class="main" x-data="pizzaCartWithAPIWidget">
-        <div class="historical Orders" style="text-align: center;">
+        <div class="historical Orders" style="text-align: center;"
+        x-show="cartId != 'NO CART CODE TO DISPLAY'">
             <h1>ORDER HISTORY</h1>
             <button @click="historyPizzas()">View Order History</button>
             <div x-show="displayHistory">
@@ -36,7 +37,7 @@
                     <div x-init="getPastOrders(cart.cart_code)"></div>
                 </template>
                 <div>
-                    <div x-show="pastOrderedPizzas.length === 0">
+                    <div x-cloak x-show="pastOrderedPizzas.length === 0">
                         <h1><span>You have no previous orders</span></h1>
                     </div>
                     <template x-for="pizzaOrder in pastOrderedPizzas">
